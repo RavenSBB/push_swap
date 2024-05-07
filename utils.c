@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:25 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/03 17:48:19 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:57:24 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,26 @@ void	add_node(t_stack_node **stack, int nbr)
 		last_node->next = node;
 		node->prev = last_node;
 	}
+}
+
+t_stack_node	*find_biggest(t_stack_node *stack)
+{
+	long			biggest;
+	t_stack_node	*biggest_node;
+
+	if(stack == NULL)
+		return(NULL);
+	biggest = LONG_MIN;
+	while(stack)
+	{
+		if(stack->nbr > biggest)
+		{
+			biggest = stack->nbr;
+			biggest_node = stack;
+		}
+		stack = stack->next;
+	}
+	return(biggest_node);
 }
 
 /*

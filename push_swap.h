@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:03:15 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/03 18:25:03 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:58:44 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdbool.h>
@@ -43,6 +43,7 @@ void			finish_rotation(t_stack_node **stack, t_stack_node *top_node, char stack_
 bool			stack_sorted(t_stack_node *stack);
 t_stack_node	*return_cheapest(t_stack_node *stack);
 t_stack_node	*find_smallest(t_stack_node *stack);
+t_stack_node	*find_biggest(t_stack_node *stack);
 void			add_node(t_stack_node **stack, int nbr);
 //commands
 static	void	push(t_stack_node **dest, t_stack_node **src);

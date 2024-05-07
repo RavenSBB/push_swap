@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:04:39 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/03 18:59:54 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:49:19 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,18 @@ bool	stack_sorted(t_stack_node *stack)
 	return (true);
 }
 
-/*
 void	sort_three(t_stack_node **a)
 {
 	t_stack_node	*biggest_number;
 
-	biggest_number = find_biggest (*a);
+	biggest_number = find_biggest(*a);
 	if(*a == biggest_number)
-		ra(a, false);
+		ra(a);
 	else if((*a)->next == biggest_number)
-		rra(a, false);
-	if((*a)->value > (*a)->next->value)
-		sa(a, false);
+		rra(a);
+	if((*a)->nbr > (*a)->next->nbr)
+		sa(a);
  }
- */
 
 /*void	push_swap(t_stack_node **a, t_stack_node **b)
 {
@@ -92,18 +90,7 @@ int	main(int argc, char **argv)
 	a = init_stack_a(argc, argv);
 	ft_print_stack(a);
 	ft_print_stack(b);
-	pb(&b, &a);
-	ft_print_stack(a);
-	ft_print_stack(b);
-	pb(&b, &a);
-	ft_print_stack(a);
-	ft_print_stack(b);
-	rra(&a);
-	ft_print_stack(a);
-	ft_print_stack(b);
-
-	ft_free_stack(a);
-	ft_free_stack(b);
+	sort_three(&a);
 
 	bool sorted = stack_sorted(a);
 	printf("sorted: %i\n", sorted);
@@ -112,6 +99,8 @@ int	main(int argc, char **argv)
 	else
 		printf("bah\n");
 
+	ft_free_stack(a);
+	ft_free_stack(b);
 
 	/*
 	if(!stack_sorted(a))

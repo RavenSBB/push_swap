@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:31:51 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/03 20:04:17 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:50:56 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long	ft_atol(char *str)
 {
-	int	i;
-	int	sign;
+	int		i;
+	int		sign;
 	long	result;
 
 	i = 0;
@@ -26,17 +26,23 @@ long	ft_atol(char *str)
 			sign = -1;
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		result = result * 10 + str[i] - '0';
+		result = result * 10 + sign * (str[i] - '0');
+		if (INT_MAX < result || result < INT_MIN)
+			return (errno = EINVAL, 0);
 		i++;
 	}
-	return (result * sign);
+	return (result);
 }
 
 int	ft_is_number(char *str)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
+	if (str[0] == '+' || str[0] == '-')
+		i++;
 	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
@@ -68,17 +74,14 @@ int	stack_length(t_stack_node *stack)
 	return (count);
 }
 
-/*
-void	checks(char *str, t_stack_node *stack)
+int	checks(char *str, t_stack_node *stack)
 {
 	long	result;
 
+	if (ft_is_number(str) == 0)
+		return (EXIT_FAILURE);
 	result = ft_atol(str);
-	if (INT_MAX < result | result < INT_MIN)
-	{
-		//ft_putendl_fd(); // put error but on stderr Hint: comes after 0, 1, ...
-		free_on_error(stack);
-		exit(1);
-	}
+	if (errno)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
-*/

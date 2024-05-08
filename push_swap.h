@@ -6,13 +6,14 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:03:15 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/07 16:58:44 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:40:55 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdbool.h>
 #include <limits.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <errno.h>
 
 typedef	struct	s_stack_node
 {
@@ -34,7 +35,7 @@ void			sort_three(t_stack_node **a);
 void			sort_stacks(t_stack_node **a, t_stack_node **b);
 /*void			push_swap(t_stack_node **a, t_stack_node **b);*/
 //push_swap_utils
-void			checks(char *str, t_stack_node *stack);
+int				checks(char *str, t_stack_node *stack);
 //utils
 long			ft_atol(char *str);
 t_stack_node	*find_last_node(t_stack_node *first_node);

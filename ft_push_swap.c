@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:04:39 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/07 17:49:19 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:22:45 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	main(int argc, char **argv)
 	ft_print_stack(a);
 	ft_print_stack(b);
 	sort_three(&a);
+	ft_print_stack(a);
+	ft_print_stack(b);
 
 	bool sorted = stack_sorted(a);
 	printf("sorted: %i\n", sorted);

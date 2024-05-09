@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:04:39 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/09 16:16:45 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:26:36 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,19 @@ void	set_target_node(t_stack_node *a, t_stack_node *b)
 			return (b->target_node = iter, (void)0);
 		iter = iter->next;
 	}
+	return (b->target_node = iter, (void)0);
 }
 
 void	rotate_node_to_top(t_stack_node **a, t_stack_node *target_node)
 {
 	if (!a || !*a || !target_node)
 		return ;
-	while (*a != target_node)
-		ra(a);
+	if (target_node->above_median)
+		while (*a != target_node)
+			ra(a);
+	else
+		while (*a != target_node)
+			rra(a);
 }
 
 void	push_swap(t_stack_node **a, t_stack_node **b)
@@ -94,14 +99,14 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 		return ;
 	while (stack_length(*a) > 3)
 		pb(b, a);
-	ft_print_stack(*a);
-	ft_print_stack(*b);
+	//ft_print_stack(*a);
+	//ft_print_stack(*b);
 	if (stack_length(*a) == 3)
 		sort_three(a);
 	else
 		sort_two(a);
-	ft_print_stack(*a);
-	ft_print_stack(*b);
+	//ft_print_stack(*a);
+	//ft_print_stack(*b);
 	while (stack_length(*b))
 	{
 		current_position(*a);
@@ -109,7 +114,10 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 		set_target_node(*a, *b);
 		rotate_node_to_top(a, (*b)->target_node);
 		pa(a, b);
+		//ft_print_stack(*a);
+		//ft_print_stack(*b);
 	}
+	rotate_node_to_top(a, find_smallest(*a));
 }
 
 /*void	push_swap(t_stack_node **a, t_stack_node **b)

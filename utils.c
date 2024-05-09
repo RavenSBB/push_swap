@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:25 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/07 16:57:24 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/09 13:02:27 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ t_stack_node	*find_biggest(t_stack_node *stack)
 	return(biggest_node);
 }
 
-/*
 t_stack_node	*find_smallest(t_stack_node *stack)
 {
 	long			smallest;
@@ -68,16 +67,15 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 	smallest = LONG_MAX;
 	while(stack)
 	{
-		if(stack->value < smallest)
+		if(stack->nbr < smallest)
 		{
-			smallest = stack->value;
+			smallest = stack->nbr;
 			smallest_node = stack;
 		}
 		stack = stack->next;
 	}
 	return(smallest_node);
 }
-*/
 
 /*
 t_stack_node	*return_cheapest(t_stack_node *stack)

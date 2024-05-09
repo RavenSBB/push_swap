@@ -6,11 +6,25 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:04:39 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/08 15:22:45 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/09 13:52:08 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+#include <stdio.h>
+void	ft_print_stack(t_stack_node *stack)
+{
+	printf("Stack: ");
+	while (stack)
+	{
+		printf("%i", stack->nbr);
+		if (stack->next)
+			printf(" -> ");
+		stack = stack->next;
+	}
+	printf("\n");
+}
 
 bool	stack_sorted(t_stack_node *stack)
 {
@@ -38,6 +52,55 @@ void	sort_three(t_stack_node **a)
 		sa(a);
  }
 
+void	sort_two(t_stack_node **a)
+{
+	if((*a)->nbr > (*a)->next->nbr)
+		sa(a);
+}
+
+void	set_target_node(t_stack_node *a, t_stack_node *b)
+{
+	while (a && a->nbr < b->nbr)
+		a = a->next;
+	b->target_node = a;
+	b->cheapest = 1;
+}
+
+void	rotate_node_to_top(t_stack_node **a, t_stack_node *target_node)
+{
+	if (!a || !*a || !target_node)
+		return ;
+	while (*a != target_node)
+		ra(a);
+}
+
+void	push_swap(t_stack_node **a, t_stack_node **b)
+{
+	if (stack_length(*a) == 1)
+		return ;
+	while (stack_length(*a) > 3)
+		pb(b, a);
+	ft_print_stack(*a);
+	ft_print_stack(*b);
+	if (stack_length(*a) == 3)
+		sort_three(a);
+	else
+		sort_two(a);
+	ft_print_stack(*a);
+	ft_print_stack(*b);
+	while (stack_length(*b))
+	{
+		current_position(*a);
+		current_position(*b);
+		set_target_node(*a, *b);
+		rotate_node_to_top(a, (*b)->target_node);
+		pa(a, b);
+		rotate_node_to_top(a, find_smallest(*a));
+		ft_print_stack(*a);
+		ft_print_stack(*b);
+	}
+}
+
 /*void	push_swap(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*smallest;
@@ -62,20 +125,6 @@ void	sort_three(t_stack_node **a)
 		while(*a != smallest)
 			rra(a);
 }*/
-
-#include <stdio.h>
-void	ft_print_stack(t_stack_node *stack)
-{
-	printf("Stack: ");
-	while (stack)
-	{
-		printf("%i", stack->nbr);
-		if (stack->next)
-			printf(" -> ");
-		stack = stack->next;
-	}
-	printf("\n");
-}
 		
 
 int	main(int argc, char **argv)
@@ -90,7 +139,7 @@ int	main(int argc, char **argv)
 	a = init_stack_a(argc, argv);
 	ft_print_stack(a);
 	ft_print_stack(b);
-	sort_three(&a);
+	push_swap(&a, &b);
 	ft_print_stack(a);
 	ft_print_stack(b);
 

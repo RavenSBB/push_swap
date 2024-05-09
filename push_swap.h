@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:03:15 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/08 15:40:55 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:31:46 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdbool.h>
@@ -46,6 +46,7 @@ t_stack_node	*return_cheapest(t_stack_node *stack);
 t_stack_node	*find_smallest(t_stack_node *stack);
 t_stack_node	*find_biggest(t_stack_node *stack);
 void			add_node(t_stack_node **stack, int nbr);
+int				has_duplicates(t_stack_node *a);
 //commands
 static	void	push(t_stack_node **dest, t_stack_node **src);
 void			pa(t_stack_node **a, t_stack_node **b);

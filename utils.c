@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:25 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/09 13:02:27 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:43:16 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,24 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 		stack = stack->next;
 	}
 	return(smallest_node);
+}
+
+int	has_duplicates(t_stack_node *a)
+{
+	t_stack_node	*temp;
+
+	while (a)
+	{
+		temp = a->next;
+		while (temp)
+		{
+			if (a->nbr == temp->nbr)
+				return (1);
+			temp = temp->next;
+		}
+		a = a->next;
+	}
+	return (0);
 }
 
 /*

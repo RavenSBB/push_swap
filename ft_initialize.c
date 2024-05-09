@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:30:20 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/09 13:02:57 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:39:54 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_stack_node	*init_stack_a(int argc, char **argv)
 		add_node(&stack_a, ft_atol(argv[i]));
 		i++;
 	}
+	if (has_duplicates(stack_a))
+		(ft_free_stack(stack_a), exit(1));
 	return(stack_a);
 }
 

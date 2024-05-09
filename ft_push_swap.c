@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:04:39 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/09 13:52:08 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:16:45 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,24 @@ void	sort_two(t_stack_node **a)
 
 void	set_target_node(t_stack_node *a, t_stack_node *b)
 {
-	while (a && a->nbr < b->nbr)
-		a = a->next;
-	b->target_node = a;
-	b->cheapest = 1;
+	t_stack_node	*start;
+	t_stack_node	*iter;
+
+	start = find_smallest(a);
+	iter = start;
+	while (iter)
+	{
+		if (iter->nbr > b->nbr)
+			return (b->target_node = iter, (void)0);
+		iter = iter->next;
+	}
+	iter = a;
+	while (iter && iter != start)
+	{
+		if (iter->nbr > b->nbr)
+			return (b->target_node = iter, (void)0);
+		iter = iter->next;
+	}
 }
 
 void	rotate_node_to_top(t_stack_node **a, t_stack_node *target_node)
@@ -95,9 +109,6 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 		set_target_node(*a, *b);
 		rotate_node_to_top(a, (*b)->target_node);
 		pa(a, b);
-		rotate_node_to_top(a, find_smallest(*a));
-		ft_print_stack(*a);
-		ft_print_stack(*b);
 	}
 }
 
@@ -132,6 +143,8 @@ int	main(int argc, char **argv)
 	t_stack_node	*a;
 	t_stack_node	*b;
 
+	if (argc < 2)
+		return (0);
 	a = NULL;
 	b = NULL;
 	if (argc < 2)

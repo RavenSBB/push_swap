@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:30:20 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/09 15:39:54 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:53:16 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,13 @@ t_stack_node	*init_stack_a(int argc, char **argv)
 	while(i < argc)
 	{
 		if (checks(argv[i], stack_a))
-		{
-			ft_free_stack(stack_a);
-			exit(1);
-		}
+			(ft_free_stack(stack_a),
+			 write(1, "Error\n", 6), exit(EXIT_FAILURE));
 		add_node(&stack_a, ft_atol(argv[i]));
 		i++;
 	}
 	if (has_duplicates(stack_a))
-		(ft_free_stack(stack_a), exit(1));
+		(ft_free_stack(stack_a), write(1, "Error\n", 6), exit(EXIT_FAILURE));
 	return(stack_a);
 }
 

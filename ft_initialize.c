@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:30:20 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/10 14:24:07 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:36:39 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	current_position(t_stack_node *stack)
 	int	median;
 
 	i = 0;
-	if(!stack)
+	if (!stack)
 		return ;
 	median = stack_length(stack) / 2;
-	while(stack)
+	while (stack)
 	{
 		stack->index = i;
-		if(i <= median)
+		if (i <= median)
 			stack->above_median = true;
 		else
 			stack->above_median = false;
@@ -51,17 +51,17 @@ t_stack_node	*init_stack_a(int argc, char **argv)
 
 	stack_a = NULL;
 	i = 1;
-	while(i < argc)
+	while (i < argc)
 	{
 		if (checks(argv[i], stack_a))
 			(ft_free_stack(stack_a),
-			 write(2, "Error\n", 6), exit(EXIT_FAILURE));
+				write(2, "Error\n", 6), exit(EXIT_FAILURE));
 		add_node(&stack_a, ft_atol(argv[i]));
 		i++;
 	}
 	if (has_duplicates(stack_a))
 		(ft_free_stack(stack_a), write(2, "Error\n", 6), exit(EXIT_FAILURE));
-	return(stack_a);
+	return (stack_a);
 }
 
 void	set_cost(t_stack_node *a, t_stack_node *b)
@@ -71,12 +71,12 @@ void	set_cost(t_stack_node *a, t_stack_node *b)
 
 	length_a = stack_length(a);
 	length_b = stack_length(b);
-	while(b)
+	while (b)
 	{
 		b->push_cost = b->index;
-		if(!(b->above_median))
+		if (!(b->above_median))
 			b->push_cost = length_b - (b->index);
-		if(b->target_node->above_median)
+		if (b->target_node->above_median)
 			b->push_cost += b->target_node->index;
 		else
 			b->push_cost += length_a - (b->target_node->index);
@@ -89,12 +89,12 @@ void	set_cheapest(t_stack_node *b)
 	long			best_match_nbr;
 	t_stack_node	*best_match_node;
 
-	if(b == NULL)
+	if (b == NULL)
 		return ;
 	best_match_nbr = LONG_MAX;
-	while(b)
+	while (b)
 	{
-		if(b->push_cost < best_match_nbr)
+		if (b->push_cost < best_match_nbr)
 		{
 			best_match_nbr = b->push_cost;
 			best_match_node = b;

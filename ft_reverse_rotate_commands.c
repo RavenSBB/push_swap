@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:26:09 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/03 18:14:08 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:37:30 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static	void	reverse_rotate(t_stack_node **stack)
 {
 	t_stack_node	*last_node;
-	int	length;
+	int				length;
 
 	length = stack_length(*stack);
-	if(stack == NULL || *stack == NULL || length == 1)
+	if (stack == NULL || *stack == NULL || length == 1)
 		return ;
 	last_node = find_last_node(*stack);
 	last_node->prev->next = NULL;

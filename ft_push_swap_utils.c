@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:31:51 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/08 15:50:56 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:47:09 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_is_number(char *str)
 t_stack_node	*find_last_node(t_stack_node *first_node)
 {
 	if (first_node == NULL)
-		return(NULL);
+		return (NULL);
 	while (first_node->next)
 		first_node = first_node->next;
 	return (first_node);

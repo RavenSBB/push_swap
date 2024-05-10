@@ -1,16 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initialize.c                                    :+:      :+:    :+:   */
+/*   ft_cost_calc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 14:30:20 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/10 15:03:30 by rboits-b         ###   ########.fr       */
+/*   Created: 2024/05/10 16:28:12 by rboits-b          #+#    #+#             */
+/*   Updated: 2024/05/10 16:52:13 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	set_target_node(t_stack_node *a, t_stack_node *b)
+{
+	t_stack_node	*start;
+	t_stack_node	*iter;
+
+	start = find_smallest(a);
+	iter = start;
+	while (iter)
+	{
+		if (iter->nbr > b->nbr)
+			return (b->target_node = iter, (void)0);
+		iter = iter->next;
+	}
+	iter = a;
+	while (iter && iter != start)
+	{
+		if (iter->nbr > b->nbr)
+			return (b->target_node = iter, (void)0);
+		iter = iter->next;
+	}
+	return (b->target_node = iter, (void)0);
+}
+
+void	set_targets(t_stack_node *a, t_stack_node *b)
+{
+	while (b)
+	{
+		set_target_node(a, b);
+		b = b->next;
+	}
+}
 
 void	current_position(t_stack_node *stack)
 {
@@ -31,26 +63,6 @@ void	current_position(t_stack_node *stack)
 		stack = stack->next;
 		i++;
 	}
-}
-
-t_stack_node	*init_stack_a(int argc, char **argv)
-{
-	t_stack_node	*stack_a;
-	int				i;
-
-	stack_a = NULL;
-	i = 1;
-	while (i < argc)
-	{
-		if (checks(argv[i], stack_a))
-			(ft_free_stack(stack_a),
-				write(2, "Error\n", 6), exit(EXIT_FAILURE));
-		add_node(&stack_a, ft_atol(argv[i]));
-		i++;
-	}
-	if (has_duplicates(stack_a))
-		(ft_free_stack(stack_a), write(2, "Error\n", 6), exit(EXIT_FAILURE));
-	return (stack_a);
 }
 
 void	set_cost(t_stack_node *a, t_stack_node *b)

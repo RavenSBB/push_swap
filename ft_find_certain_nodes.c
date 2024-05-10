@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_find_certain_nodes.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 14:36:25 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/10 14:40:20 by rboits-b         ###   ########.fr       */
+/*   Created: 2024/05/10 16:27:39 by rboits-b          #+#    #+#             */
+/*   Updated: 2024/05/10 16:49:05 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	add_node(t_stack_node **stack, int nbr)
+t_stack_node	*find_last_node(t_stack_node *first_node)
 {
-	t_stack_node	*node;
-	t_stack_node	*last_node;
-
-	if (stack == NULL)
-		return ;
-	node = malloc(sizeof(t_stack_node));
-	if (node == NULL)
-		return ;
-	node->cheapest = false;
-	node->next = NULL;
-	node->nbr = nbr;
-	if (*stack == NULL)
-	{
-		*stack = node;
-		node->prev = NULL;
-	}
-	else
-	{
-		last_node = find_last_node(*stack);
-		last_node->next = node;
-		node->prev = last_node;
-	}
+	if (first_node == NULL)
+		return (NULL);
+	while (first_node->next)
+		first_node = first_node->next;
+	return (first_node);
 }
 
 t_stack_node	*find_biggest(t_stack_node *stack)
@@ -76,24 +59,6 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 		stack = stack->next;
 	}
 	return (smallest_node);
-}
-
-int	has_duplicates(t_stack_node *a)
-{
-	t_stack_node	*temp;
-
-	while (a)
-	{
-		temp = a->next;
-		while (temp)
-		{
-			if (a->nbr == temp->nbr)
-				return (1);
-			temp = temp->next;
-		}
-		a = a->next;
-	}
-	return (0);
 }
 
 t_stack_node	*return_cheapest(t_stack_node *stack)

@@ -6,7 +6,7 @@
 #    By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 12:02:46 by rboits-b          #+#    #+#              #
-#    Updated: 2024/05/03 18:25:22 by rboits-b         ###   ########.fr        #
+#    Updated: 2024/05/10 16:57:51 by rboits-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,12 @@ NAME = push_swap
 
 INCL = .
 
-SRC = ft_initialize.c ft_push_swap.c ft_push_swap_utils.c utils.c ft_push_commands.c ft_swap_commands.c ft_rotate_commands.c ft_reverse_rotate_commands.c free.c
-
-#SRC = ft_initialize.c ft_push_commands.c ft_push_swap.c ft_push_swap_utils.c\
-	  ft_reverse_rotate_commands.c ft_rotate_commands.c\
-	  utils.c ft_sort_stacks.c ft_swap_commands.c
+SRC = ft_push_swap.c ft_push_commands.c ft_swap_commands.c ft_rotate_commands.c ft_reverse_rotate_commands.c ft_init.c ft_algorithm.c ft_utils.c ft_find_certain_nodes.c ft_rotate_to_top.c ft_cost_calc.c ft_free_stack.c
 
 OBJS = $(SRC:.c=.o)
 
 CC = cc
-#CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 CFLAGS = -g
 
 all : $(NAME)

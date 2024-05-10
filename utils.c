@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 14:36:25 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/09 15:43:16 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:17:08 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	add_node(t_stack_node **stack, int nbr)
 	node = malloc(sizeof(t_stack_node));
 	if(node == NULL)
 		return ;
+	node->cheapest = false;
 	node->next = NULL;
 	node->nbr = nbr;
 	if(*stack == NULL)
@@ -95,7 +96,6 @@ int	has_duplicates(t_stack_node *a)
 	return (0);
 }
 
-/*
 t_stack_node	*return_cheapest(t_stack_node *stack)
 {
 	if(stack == NULL)
@@ -108,4 +108,3 @@ t_stack_node	*return_cheapest(t_stack_node *stack)
 	}
 	return(NULL);
 }
-*/

@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:03:15 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/09 15:31:46 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:25:15 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdbool.h>
@@ -67,7 +67,7 @@ void			ss(t_stack_node **a, t_stack_node **b);
 void			init_nodes_a(t_stack_node *a, t_stack_node *b);
 void			current_position(t_stack_node *stack);
 t_stack_node	*init_stack_a(int argc, char **argv);
-void			set_price(t_stack_node *a, t_stack_node *b);
+void			set_cost(t_stack_node *a, t_stack_node *b);
 void			set_cheapest(t_stack_node *b);
 //free stuff
 void			ft_free_stack(t_stack_node *stack);

@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:04:39 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/09 18:26:36 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:24:41 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,16 @@ void	set_target_node(t_stack_node *a, t_stack_node *b)
 	return (b->target_node = iter, (void)0);
 }
 
+void	set_targets(t_stack_node *a, t_stack_node *b)
+{
+	while (b)
+	{
+		set_target_node(a, b);
+		b = b->next;
+	}
+}
+
+
 void	rotate_node_to_top(t_stack_node **a, t_stack_node *target_node)
 {
 	if (!a || !*a || !target_node)
@@ -91,6 +101,21 @@ void	rotate_node_to_top(t_stack_node **a, t_stack_node *target_node)
 	else
 		while (*a != target_node)
 			rra(a);
+}
+
+void	push_cheapest(t_stack_node **a, t_stack_node **b)
+{
+	t_stack_node	*to_push;
+
+	current_position(*a);
+	current_position(*b);
+	set_targets(*a, *b);
+	set_cost(*a, *b);
+	set_cheapest(*b);
+	to_push = return_cheapest(*b);
+	rotate_node_to_top(a, to_push->target_node);
+	rotate_node_to_top(b, to_push);
+	pa(a, b);
 }
 
 void	push_swap(t_stack_node **a, t_stack_node **b)
@@ -105,15 +130,11 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 		sort_three(a);
 	else
 		sort_two(a);
-	//ft_print_stack(*a);
+	//ft_print_staprintfck(*a);
 	//ft_print_stack(*b);
 	while (stack_length(*b))
 	{
-		current_position(*a);
-		current_position(*b);
-		set_target_node(*a, *b);
-		rotate_node_to_top(a, (*b)->target_node);
-		pa(a, b);
+		push_cheapest(a, b);
 		//ft_print_stack(*a);
 		//ft_print_stack(*b);
 	}
@@ -165,11 +186,10 @@ int	main(int argc, char **argv)
 	ft_print_stack(b);
 
 	bool sorted = stack_sorted(a);
-	printf("sorted: %i\n", sorted);
 	if(sorted)
-		printf("Yay!\n");
+		write(2, "Yay!\n", 5);
 	else
-		printf("bah\n");
+		write(2, "bah\n", 4);
 
 	ft_free_stack(a);
 	ft_free_stack(b);

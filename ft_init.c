@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:26:30 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/10 16:40:33 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:11:38 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ t_stack_node	*init_stack_a(int argc, char **argv)
 			(ft_free_stack(stack_a),
 				write(2, "Error\n", 6), exit(EXIT_FAILURE));
 		add_node(&stack_a, ft_atol(argv[i]));
+		if (errno)
+			(write(2, "Error\n", 6), exit(EXIT_FAILURE));
 		i++;
 	}
 	if (has_duplicates(stack_a))

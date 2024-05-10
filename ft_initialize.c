@@ -6,22 +6,11 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:30:20 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/10 14:36:39 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:03:30 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-void	init_nodes_a(t_stack_node *a, t_stack_node *b)
-{
-	current_position(a);
-	current_position(b);
-	set_target_node(a,b);
-	set_price(a,b);
-	set_cheapest(b);
-}
-*/
 
 void	current_position(t_stack_node *stack)
 {

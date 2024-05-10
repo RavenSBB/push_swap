@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:03:15 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/10 14:54:58 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:03:34 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdbool.h>
@@ -65,7 +65,6 @@ void			sa(t_stack_node **a);
 void			sb(t_stack_node **b);
 void			ss(t_stack_node **a, t_stack_node **b);
 //initialize
-void			init_nodes_a(t_stack_node *a, t_stack_node *b);
 void			current_position(t_stack_node *stack);
 t_stack_node	*init_stack_a(int argc, char **argv);
 void			set_cost(t_stack_node *a, t_stack_node *b);

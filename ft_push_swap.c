@@ -6,7 +6,7 @@
 /*   By: rboits-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:04:39 by rboits-b          #+#    #+#             */
-/*   Updated: 2024/05/10 14:59:44 by rboits-b         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:42:07 by rboits-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	set_targets(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	rotate_node_to_top(t_stack_node **a, t_stack_node *target_node)
+void	rotate_node_to_top_a(t_stack_node **a, t_stack_node *target_node)
 {
 	if (!a || !*a || !target_node)
 		return ;
@@ -102,6 +102,18 @@ void	rotate_node_to_top(t_stack_node **a, t_stack_node *target_node)
 	else
 		while (*a != target_node)
 			rra(a);
+}
+
+void	rotate_node_to_top_b(t_stack_node **b, t_stack_node *target_node)
+{
+	if (!b || !*b || !target_node)
+		return ;
+	if (target_node->above_median)
+		while (*b != target_node)
+			rb(b);
+	else
+		while (*b != target_node)
+			rrb(b);
 }
 
 void	push_cheapest(t_stack_node **a, t_stack_node **b)
@@ -114,8 +126,8 @@ void	push_cheapest(t_stack_node **a, t_stack_node **b)
 	set_cost(*a, *b);
 	set_cheapest(*b);
 	to_push = return_cheapest(*b);
-	rotate_node_to_top(a, to_push->target_node);
-	rotate_node_to_top(b, to_push);
+	rotate_node_to_top_a(a, to_push->target_node);
+	rotate_node_to_top_b(b, to_push);
 	pa(a, b);
 }
 
@@ -133,7 +145,7 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 	{
 		push_cheapest(a, b);
 	}
-	rotate_node_to_top(a, find_smallest(*a));
+	rotate_node_to_top_a(a, find_smallest(*a));
 }
 
 int	main(int argc, char **argv)
